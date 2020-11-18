@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="result.css">
+    <title>GOOD LIFE LOG</title>
+</head>
+
+<body>
+    <header>
+        <h1 class="title_letter">GOOD LIFE LOG</h1>
+    </header>
+
+    <main>
+        <h3 class="record">記録しよう！</h3>
+        <!-- <p id="today_v">今日の日付</p> -->
+        <div class="to_day_b">
+            <div class="to_day">
+                <p id="today_y">年</p>
+                <p id="today_m">月</p>
+                <p id="today_d">日</p>
+            </div>
+        </div>
+
+        <!-- <div class="date"><input type="date" id="today"></div> -->
+        <ul>
+            <li><input id="target1" type="radio" name="aim_1" value="aim_c1">目標１</li>
+            <li><input id="target2" type="radio" name="aim_2" value="aim_c2">目標２</li>
+            <li><input id="target3" type="radio" name="aim_3" value="aim_c3">目標３</li>
+            <li><input id="target4" type="radio" name="aim_4" value="aim_c4">目標４</li>
+            <li><input id="target5" type="radio" name="aim_5" value="aim_c5">目標５</li>
+        </ul>
+        <div class="enter_b">
+            <p id="enter">入力する</p>
+        </div>
+        <div class="start_b">
+            <p id="start">スタート画面に戻る</p>
+        </div>
+    </main>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $('#start').on('click', function () {
+                window.location.href = 'index.html';
+            });
+        });
+        window.onload = () => {
+
+            const json = window.location.search.substr(1);
+            const data1 = JSON.parse(Data);
+
+            for (let key in data) {
+                // 送信されたデータを保存
+                localStorage.setItem('aim_1', 'aim_c1');
+            }
+        };
+        // window.onload = function () {
+        //     if (localStorage.getItem('memo1')) {
+        //         const jsonData = localStorage.getItem('memo1');
+        //         const data1 = JSON.parse(jsonData);
+        //         $('#input1').val(data1.title);
+        //     }
+        //     if (localStorage.getItem('memo2')) {
+        //         const jsonData = localStorage.getItem('memo2');
+        //         const data2 = JSON.parse(jsonData);
+        //         $('#input2').val(data2.title);
+        //     }
+        //     if (localStorage.getItem('memo3')) {
+        //         const jsonData = localStorage.getItem('memo3');
+        //         const data3 = JSON.parse(jsonData);
+        //         $('#input3').val(data3.title);
+        //     }
+        //     if (localStorage.getItem('memo4')) {
+        //         const jsonData = localStorage.getItem('memo4');
+        //         const data4 = JSON.parse(jsonData);
+        //         $('#input4').val(data4.title);
+        //     }
+        //     if (localStorage.getItem('memo5')) {
+        //         const jsonData = localStorage.getItem('memo5');
+        //         const data5 = JSON.parse(jsonData);
+        //         $('#input5').val(data5.title);
+        //     }
+        //     //4.スタート画面にもどる
+        //     $('#start').on('click', function () {
+        //         window.location.href = 'index.html';
+        //     });
+
+
+
+
+
+        window.onload = function () {
+            var today = new Date();
+            // $("#today_v").text(today);
+            $("#today_y").text(today.getFullYear() + "年");
+            $("#today_m").text((today.getMonth() + 1) + "月");
+            $("#today_d").text(today.getDate() + "日");
+            console.log(today);
+        };
+
+
+
+
+            // $('#enter').on('click', function () {
+            //     const deta = [
+            //         { date: deta, aim_1: aim_c1 }
+
+
+
+            // ]
+
+
+            // const data1 = {
+            //     title: $('#input1').val(),
+            // };
+            // const jsonData = JSON.stringify(data1);
+            // localStorage.setItem('memo1', jsonData);
+
+
+
+
+        // var element = document.getElementById("target");
+
+        // element.checked = true;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>

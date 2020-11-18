@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>GOODLIFELOG</title>
+</head>
+
+<body>
+    <header>
+        <h1 class="title_letter">GoodLifeLog</h1>
+    </header>
+
+    <main>
+        <p></p>
+        <!-- <div class="select">
+            <ul>
+                <li id="aim_e">目標入力</li><br>
+                <li id="result_e">達成状況入力</li><br>
+                <li id="table_r">達成度表示</li>
+            </ul>
+        </div> -->
+
+        <h3>目標を入力しよう！</h3>
+        <!-- <textarea id="text_area"></textarea> -->
+        1<input type="text" id="input1"><br>
+        2<input type="text" id="input2"><br>
+        3<input type="text" id="input3"><br>
+        4<input type="text" id="input4"><br>
+        5<input type="text" id="input5">
+
+        <ul>
+            <li id="save">保存する</li>
+            <li id="clear">削除する</li>
+        </ul>
+
+
+        <h3 class="record">毎日記録しよう！</h3>
+
+        <!-- <div class="date"><input type="date" id="today"></div> -->
+        <form>
+            <ul class="kiroku">
+                <li><input class="target" type="checkbox">
+                    目標１<input type="text" id="inp1">
+                </li>
+                <li><input class="target" type="checkbox">
+                    目標２<input type="text" id="inp2">
+                </li>
+                <li><input class="target" type="checkbox">
+                    目標３<input type="text" id="inp3">
+                </li>
+                <li><input class="target" type="checkbox">
+                    目標４<input type="text" id="inp4">
+                </li>
+                <li><input class="target" type="checkbox">
+                    目標５<input type="text" id="inp5">
+                </li>
+            </ul>
+
+            <div class="enter_b">
+                <button id="enter" type="button">入力する</button>
+            </div>
+        </form>
+        <form id="sampleForm">
+            <li class="to_day_b">
+                <div class="to_day">
+                    <p id="today_y">年</p>
+                    <p id="today_m">月</p>
+                    <p id="today_d">日</p>
+                </div>
+            </li>
+            <li id="result"></li>
+        </form>
+        <table id="sampleTable">
+            <tr>
+                <th id="tabledate">日付</th>
+                <th id="tableresult">個数</th>
+            </tr>
+        </table>
+
+
+    </main>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+
+        window.onload = function () {
+            var today = new Date();
+            // $("#today_v").text(today);
+            $("#today_y").text(today.getFullYear() + "年");
+            $("#today_m").text((today.getMonth() + 1) + "月");
+            $("#today_d").text(today.getDate() + "日");
+            console.log(today);
+        };
+
+        $(function () {
+
+            //1.Save クリックイベント
+            $('#save').on('click', function () {
+                const data1 = {
+                    title: $('#input1').val(),
+                };
+                const jsonData = JSON.stringify(data1);
+                localStorage.setItem('memo1', jsonData);
+            });
+            $('#save').on('click', function () {
+                const data2 = {
+                    title: $('#input2').val(),
+                };
+                const jsonData = JSON.stringify(data2);
+                localStorage.setItem('memo2', jsonData);
+            });
+            $('#save').on('click', function () {
+                const data3 = {
+                    title: $('#input3').val(),
+                };
+                const jsonData = JSON.stringify(data3);
+                localStorage.setItem('memo3', jsonData);
+            });
+            $('#save').on('click', function () {
+                const data4 = {
+                    title: $('#input4').val(),
+                };
+                const jsonData = JSON.stringify(data4);
+                localStorage.setItem('memo4', jsonData);
+            });
+            $('#save').on('click', function () {
+                const data5 = {
+                    title: $('#input5').val(),
+                };
+                const jsonData = JSON.stringify(data5);
+                localStorage.setItem('memo5', jsonData);
+            });
+
+            //2.clear クリックイベント
+            $('#clear').on('click', function () { // clearボタンクリックイベント
+                localStorage.removeItem('memo1'); // key名を指定して削除
+                $('#input1').val(''); // textareaを空文字で上書き
+            });
+            $('#clear').on('click', function () { // clearボタンクリックイベント
+                localStorage.removeItem('memo2'); // key名を指定して削除
+                $('#input2').val(''); // textareaを空文字で上書き
+            });
+            $('#clear').on('click', function () { // clearボタンクリックイベント
+                localStorage.removeItem('memo3'); // key名を指定して削除
+                $('#input3').val(''); // textareaを空文字で上書き
+            });
+            $('#clear').on('click', function () { // clearボタンクリックイベント
+                localStorage.removeItem('memo4'); // key名を指定して削除
+                $('#input4').val(''); // textareaを空文字で上書き
+            });
+            $('#clear').on('click', function () { // clearボタンクリックイベント
+                localStorage.removeItem('memo5'); // key名を指定して削除
+                $('#input5').val(''); // textareaを空文字で上書き
+            });
+
+            //3.ページ読み込み：保存データ取得表示
+            if (localStorage.getItem('memo1')) {
+                const jsonData = localStorage.getItem('memo1');
+                const data1 = JSON.parse(jsonData);
+                $('#input1').val(data1.title);
+                $('#inp1').val(data1.title);
+            }
+            if (localStorage.getItem('memo2')) {
+                const jsonData = localStorage.getItem('memo2');
+                const data2 = JSON.parse(jsonData);
+                $('#input2').val(data2.title);
+                $('#inp2').val(data2.title);
+            }
+            if (localStorage.getItem('memo3')) {
+                const jsonData = localStorage.getItem('memo3');
+                const data3 = JSON.parse(jsonData);
+                $('#input3').val(data3.title);
+                $('#inp3').val(data3.title);
+            }
+            if (localStorage.getItem('memo4')) {
+                const jsonData = localStorage.getItem('memo4');
+                const data4 = JSON.parse(jsonData);
+                $('#input4').val(data4.title);
+                $('#inp4').val(data4.title);
+            }
+            if (localStorage.getItem('memo5')) {
+                const jsonData = localStorage.getItem('memo5');
+                const data5 = JSON.parse(jsonData);
+                $('#input5').val(data5.title);
+                $('#inp5').val(data5.title);
+            }
+
+        });
+        //チェックボックスを取得する
+        const el = document.getElementsByClassName("target");
+        //カウントボタンを取得する
+        const btn = document.getElementById("enter");
+
+        //チェック済みのチェックボックスの数を返す
+        const getCheckedCount = () => {
+
+            let count = 0;
+
+            for (let i = 0; i < el.length; i++) {
+                if (el[i].checked) {
+                    count++;
+                }
+            }
+            $('#result').text(count);
+        };
+
+        //ボタンをクリックした時に「getCheckedCount()」を呼び出す
+        btn.addEventListener("click", getCheckedCount, false);
+
+
+        function appendToTable() {
+            // const $formObject = document.getElementById("sampleForm");
+            const $tableObject = document.getElementById("sampleTable");
+            const $tr = "<tr>";
+            $tr += "<td>" + $formObject.formDate.value + "</td>";
+            $tr += "<td>" + $formObject.formResult.value + "</td>";
+            $tr += "</tr>";
+            $tableObject.insertAdjacentHTML("beforeend", $tr);
+        }
+
+
+        $('#enter').on('click', function () {
+            const data0 = {
+                title: $('#result').val(),
+            };
+            const jsonData = JSON.stringify(data0);
+            localStorage.setItem('memo0', jsonData);
+        });
+
+
+    </script>
+
+</body>
+
+</html>

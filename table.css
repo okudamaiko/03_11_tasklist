@@ -1,0 +1,20 @@
+body{
+    margin:0;
+    padding:0;
+    text-align:left;
+    font-size: 16px;
+    
+}
+header{
+    background-color: yellowgreen;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+}
+
+
+.title_letter{
+    font-size: 20px;
+    height: 20px;
+    
+}
+

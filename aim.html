@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>GoodLifeLog</title>
+    <link rel="stylesheet" href="aim.css">
+</head>
+
+<body>
+    <header>
+        <h1>GoodLifeLog</h1>
+    </header>
+
+    <main>
+        <p>目標を入力しよう！</p>
+        <!-- <textarea id="text_area"></textarea> -->
+        <p>1</p><input type="text" id="input1">
+        <p>2</p><input type="text" id="input2">
+        <p>3</p><input type="text" id="input3">
+        <p>4</p><input type="text" id="input4">
+        <p>5</p><input type="text" id="input5">
+
+        <ul>
+            <li id="save">Save</li>
+            <li id="clear">Clear</li>
+            <li id="start">スタート画面に戻る</li>
+        </ul>
+    </main>
+
+    <footer>
+        <small>GoodLife</small>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+
+            //1.Save クリックイベント
+            $('#save').on('click', function () {
+                const data1 = {
+                    title: $('#input1').val(),
+                };
+                const jsonData = JSON.stringify(data1);
+                localStorage.setItem('memo1', jsonData);
+            });
+            $('#save').on('click', function () {
+                const data2 = {
+                    title: $('#input2').val(),
+                };
+                const jsonData = JSON.stringify(data2);
+                localStorage.setItem('memo2', jsonData);
+            });
+            $('#save').on('click', function () {
+                const data3 = {
+                    title: $('#input3').val(),
+                };
+                const jsonData = JSON.stringify(data3);
+                localStorage.setItem('memo3', jsonData);
+            });
+            $('#save').on('click', function () {
+                const data4 = {
+                    title: $('#input4').val(),
+                };
+                const jsonData = JSON.stringify(data4);
+                localStorage.setItem('memo4', jsonData);
+            });
+            $('#save').on('click', function () {
+                const data5 = {
+                    title: $('#input5').val(),
+                };
+                const jsonData = JSON.stringify(data5);
+                localStorage.setItem('memo5', jsonData);
+            });
+            let data = {};
+
+            for (let i = 0; i < localStorage.length; i++) {
+
+                let key = localStorage.key(i);
+                data[key] = localStorage.getItem(key);
+            }
+
+
+            //2.clear クリックイベント
+            $('#clear').on('click', function () { // clearボタンクリックイベント
+                localStorage.removeItem('memo1'); // key名を指定して削除
+                $('#input1').val(''); // textareaを空文字で上書き
+            });
+            $('#clear').on('click', function () { // clearボタンクリックイベント
+                localStorage.removeItem('memo2'); // key名を指定して削除
+                $('#input2').val(''); // textareaを空文字で上書き
+            });
+            $('#clear').on('click', function () { // clearボタンクリックイベント
+                localStorage.removeItem('memo3'); // key名を指定して削除
+                $('#input3').val(''); // textareaを空文字で上書き
+            });
+            $('#clear').on('click', function () { // clearボタンクリックイベント
+                localStorage.removeItem('memo4'); // key名を指定して削除
+                $('#input4').val(''); // textareaを空文字で上書き
+            });
+            $('#clear').on('click', function () { // clearボタンクリックイベント
+                localStorage.removeItem('memo5'); // key名を指定して削除
+                $('#input5').val(''); // textareaを空文字で上書き
+            });
+
+            //3.ページ読み込み：保存データ取得表示
+            if (localStorage.getItem('memo1')) {
+                const jsonData = localStorage.getItem('memo1');
+                const data1 = JSON.parse(jsonData);
+                $('#input1').val(data1.title);
+            }
+            if (localStorage.getItem('memo2')) {
+                const jsonData = localStorage.getItem('memo2');
+                const data2 = JSON.parse(jsonData);
+                $('#input2').val(data2.title);
+            }
+            if (localStorage.getItem('memo3')) {
+                const jsonData = localStorage.getItem('memo3');
+                const data3 = JSON.parse(jsonData);
+                $('#input3').val(data3.title);
+            }
+            if (localStorage.getItem('memo4')) {
+                const jsonData = localStorage.getItem('memo4');
+                const data4 = JSON.parse(jsonData);
+                $('#input4').val(data4.title);
+            }
+            if (localStorage.getItem('memo5')) {
+                const jsonData = localStorage.getItem('memo5');
+                const data5 = JSON.parse(jsonData);
+                $('#input5').val(data5.title);
+            }
+            //4.スタート画面にもどる
+            $('#start').on('click', function () {
+                window.location.href = 'index.html';
+            });
+            const json = JSON.stringify(data);
+            const url = 'result.html' + encodeURIComponent(json);
+            let iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = url;
+            document.body.appendChild(iframe);
+
+        }
+
+
+        );
+
+    </script>
+
+</body>
+
+</html>
